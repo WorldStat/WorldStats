@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Adding Data{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h3>Page for creating a segment</h3>
+        <hr>
+        <form id="form3" method="post" action="{% url 'stats/create' %}", enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {% for field in form %}
+                    <div class="form-group">
+                         {{ field.label_tag }}
+                        <div>
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <p style="margin-top: 20px">
+                <input id="b1" type="Submit" value="Save" class="btn btn-primary">
+                <input id="b2" type="Reset" value="Clear" class="btn btn-secondary">
+            </p>
+        </form>
+        <hr>
+    </div>
+    <style>
+        #form3 {
+            text-align: left;
+        }
+        #b1,
+        #b2 {
+            width: 150px;
+            margin-left: 5px;
+        }
+        .form-group input {
+            width: 50%;
+            height: 30px;
+        }
+        .form-group textarea {
+            width: 50%;
+        }
+    </style>
+
+{% endblock content%}

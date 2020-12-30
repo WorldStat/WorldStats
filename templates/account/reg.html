@@ -1,0 +1,70 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+{% load static %}
+
+    <div class="container" style="margin-top: 25px;">
+        <h3>Register</h3>
+        <hr>
+        <form id="form1" action="{% url 'reg' %}" method="post" onsubmit="return false">
+            {% csrf_token %}
+            <div class="form-group">
+                login:<br>
+                <input type="text" id="login" name="login" required>
+                <img id="login_ico" src="{% static 'img/question.png' %}" class="icon">
+                <div id="login_err" class="error"></div>
+            </div>
+            <div class="form-group">
+                password:<br>
+                <input type="password" id="pass1" name="pass1" required>
+                <img id="pass1_ico" src="{% static 'img/question.png' %}" class="icon">
+                <div id="pass1_err" class="error"></div>
+            </div>
+            <div class="form-group">
+                verify password:<br>
+                <input type="password" id="pass2" name="pass2" required>
+                <img id="pass2_ico" src="{% static 'img/question.png' %}" class="icon">
+                <div id="pass2_err" class="error"></div>
+            </div>
+            <div class="form-group">
+                E-mail:<br>
+                <input type="email" id="email" name="email" required>
+                <img id="email_ico" src="{% static 'img/question.png' %}" class="icon">
+                <div id="email_err" class="error"></div>
+            </div>
+            <p style="margin-top: 30px;">
+                <input type="submit" id="submit" value="Register" class="btn btn-primary">
+                <input type="reset" id="reset" value="Clear" class="btn btn-secondary">
+            </p>
+        </form>
+        <hr>
+    </div>
+
+    <style>
+        #form1 {
+            width: 50%;
+        }
+        .icon {
+            width: 24px;
+            margin-left: 15px;
+        }
+        .error {
+            color: red;
+            font-size: 8pt;
+            font-style: italic;
+        }
+        #login,
+        #pass1,
+        #pass2,
+        #email
+        {
+            width: 80%;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static 'js/reg.js' %}"></script>
+
+{% endblock content%}

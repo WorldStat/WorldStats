@@ -1,0 +1,90 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+    <div class="container" style="margin-top: 25px;">
+        <hr>
+        <p style="margin-top: 13px">
+            <a href="{% url 'stats/index' %}">Back to Articles</a>
+        </p>
+        <hr>
+        <h3>Article Details</h3>
+        <br>
+        <h5>
+            ID: {{ article.id }}
+            &nbsp;&nbsp;&nbsp;
+            <span style="color: darkcyan">{{ article.title }}</span>
+        </h5>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/media/{{ article.picture }}" width="100%">
+            </div>
+            <div class="col-md-4">
+                <br>
+                <p>
+                    {{ article.about }}
+                    <br>
+                    {{ article.publish }}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <p>
+                    {{ article.content }}
+                    <br>
+                    <a href="{{ article.source }}" target="_blank">Source Link</a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <h5>Comments Feed</h5>
+        <table class="present" border="1">
+            <tr style="background-color: lavender">
+                <th>Id</th>
+                <th>Content</th>
+                <th>User</th>
+                <th>Date</th>
+                <th>Article</th>
+                <th>actions</th>
+            </tr>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.content }}</td>
+                    <td>{{ comment.user }}</td>
+                    <td>{{ comment.publish }}</td>
+                    <td>{{ comment.article }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="content">Content:</label><br>
+                <textarea id="content" name="content" rows="5" cols="55"></textarea>
+            </div>
+            <p style="margin-top: 13px">
+                <input type="submit" value="Save" class="btn btn-success">
+            </p>
+        </form>
+    </div>
+    <style>
+        .present {
+            width: 100%;
+        }
+        .present th,
+        .present td {
+            text-align: center;
+            padding: 6px 10px;
+        }
+        .present th {
+            font-style: italic;
+            color: darkcyan;
+        }
+    </style>
+
+
+{% endblock content%}
